@@ -39,4 +39,14 @@ if (!process.env.VERCEL) {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
+app.get("/api/debug", (req, res) => {
+  res.json({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    name: process.env.DB_NAME,
+    hasPassword: !!process.env.DB_PASSWORD,
+  });
+});
+
 module.exports = app;
